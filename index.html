@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dul's Birthday ♡</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main id="birthday-app">
+
+
+<!-- =====================================================
+     PAGE 0 
+===================================================== -->
+
+
+<section id="countdown" class="scene active countdown-scene">
+    
+    <div class="background-sparkles" aria-hidden="true">
+    <span>✦</span>
+    <span>·</span>
+    <span>✦</span>
+    <span>·</span>
+    <span>✦</span>
+    <span>·</span>
+    </div>
+
+    <div class="countdown-content">
+
+        <div class="misuu-area">
+            <div class="misuu-placeholder">
+                <span class="zzz">Zzz</span>
+                <img
+                    src="assets/misuu/misuu-sleeping.png"
+                    alt="Misuu sleeping"
+                    class="misuu-image"
+                >
+            </div>
+        </div>
+
+        <div class="countdown-text">
+
+            <h1>Not yet, Dul…</h1>
+
+            <p class="subtitle">
+                Something special is waiting for you ♡
+            </p>
+        </div>
+
+        <div class="timer-grid">
+
+            <div class="timer-card">
+                <span id="days" class="timer-number">00</span>
+                <span class="timer-label">DAYS</span>
+            </div>
+
+            <div class="timer-card">
+                <span id="hours" class="timer-number">00</span>
+                <span class="timer-label">HRS</span>
+            </div>
+
+            <div class="timer-card">
+                <span id="minutes" class="timer-number">00</span>
+                <span class="timer-label">MIN</span>
+            </div>
+
+            <div class="timer-card">
+                <span id="seconds" class="timer-number">00</span>
+                <span class="timer-label">SEC</span>
+            </div>
+
+        </div>
+
+        <p class="guard-message">
+
+    <svg
+        class="lock-icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+    >
+        <rect
+            x="5"
+            y="10"
+            width="14"
+            height="11"
+            rx="2"
+            stroke="currentColor"
+            stroke-width="2"
+        />
+
+        <path
+            d="M8 10V7a4 4 0 0 1 8 0v3"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M12 14v3"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+    </svg>
+
+    <span>Misuu is guarding the surprise.</span>
+
+</p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PAGE 1
+===================================================== -->
+
+<section id="welcome" class="scene welcome-scene">
+    
+    <div id="heart-particles" aria-hidden="true"></div>
+
+    <div class="welcome-sparkles" aria-hidden="true">
+        <span>✦</span>
+        <span>♥</span>
+        <span>✦</span>
+        <span>·</span>
+        <span>♥</span>
+        <span>✦</span>
+    </div>
+
+    <div class="welcome-content">
+
+        <div class="welcome-misuu">
+            <img
+                src="assets/misuu/misuu-awake.png"
+                alt="Misuu waiting for Dul"
+                class="welcome-misuu-image"
+            >
+        </div>
+
+        <h1>IT'S TIME, DUL!</h1>
+
+        <p class="welcome-message">
+        Misuu has something to show you ♡
+        </p>
+
+        <button id="follow-misuu" class="follow-button">
+            Follow Misuu
+            <span>→</span>
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 2
+===================================================== -->
+
+<section id="birthday" class="scene birthday-scene">
+
+    <div class="birthday-particles" aria-hidden="true">
+        <span>♥</span>
+        <span>✦</span>
+        <span>♪</span>
+        <span>♥</span>
+        <span>✦</span>
+        <span>♫</span>
+        <span>♥</span>
+        <span>✦</span>
+    </div>
+
+    <button
+        id="music-toggle"
+        class="music-button"
+        aria-label="Toggle background music"
+    >
+        ♪
+    </button>
+
+    <div class="birthday-content">
+
+        <h1>
+            HAPPY BIRTHDAY<br>
+            <span>Dul ♥</span>
+        </h1>
+
+        <div class="birthday-misuu">
+            <img
+                src="assets/misuu/misuu-dancing.png"
+                alt="Misuu dancing"
+                class="birthday-misuu-image"
+            >
+        </div>
+
+        <p class="birthday-message">
+            Today is entirely yours ♡
+        </p>
+
+        <button id="start-story" class="birthday-button">
+             See our memories
+             <span>→</span>
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 3
+===================================================== -->
+
+<section id="photos" class="scene photos-scene">
+
+    <div class="photos-content">
+
+        <div class="photos-heading">
+            <h1>Our Little Pieces ♡</h1>
+
+            <p>
+                Some moments I never want to lose.
+            </p>
+        </div>
+
+
+        <!-- PHOTO SCRAPBOOK -->
+
+        <div class="photo-collage">
+
+            <button class="polaroid photo-1" data-photo="assets/photos/photo-01.jpg">
+                <img src="assets/photos/photo-01.jpg" alt="Our memory 1">
+            </button>
+
+            <button class="polaroid photo-2" data-photo="assets/photos/photo-02.jpg">
+                <img src="assets/photos/photo-02.jpg" alt="Our memory 2">
+            </button>
+
+            <button class="polaroid photo-3" data-photo="assets/photos/photo-03.jpg">
+                <img src="assets/photos/photo-03.jpg" alt="Our memory 3">
+            </button>
+
+            <button class="polaroid photo-4" data-photo="assets/photos/photo-04.jpg">
+                <img src="assets/photos/photo-04.jpg" alt="Our memory 4">
+            </button>
+
+            <button class="polaroid photo-5" data-photo="assets/photos/photo-05.jpg">
+                <img src="assets/photos/photo-05.jpg" alt="Our memory 5">
+            </button>
+
+            <button class="polaroid photo-6" data-photo="assets/photos/photo-06.jpg">
+                <img src="assets/photos/photo-06.jpg" alt="Our memory 6">
+            </button>
+
+            <button class="polaroid photo-7" data-photo="assets/photos/photo-07.jpg">
+                <img src="assets/photos/photo-07.jpg" alt="Our memory 7">
+            </button>
+
+            <button class="polaroid photo-8" data-photo="assets/photos/photo-08.jpg">
+                <img src="assets/photos/photo-08.jpg" alt="Our memory 8">
+            </button>
+
+            <!-- Scrapbook decorations -->
+            <span class="scrap-decoration scrap-heart">♡</span>
+            <span class="scrap-decoration scrap-star">✦</span>
+            <span class="scrap-decoration scrap-note">us ♡</span>
+            <span class="scrap-decoration scrap-moments">little moments...</span>
+
+        </div>
+
+
+        <p class="photo-hint">
+            Tap a photo to look closer ♡
+        </p>
+
+
+        <button id="photos-next" class="photos-next-button">
+            Keep going
+            <span>→</span>
+        </button>
+
+    </div>
+
+
+    <!-- PHOTO VIEWER -->
+
+    <div id="photo-viewer" class="photo-viewer">
+
+        <button
+            id="close-photo"
+            class="close-photo"
+            aria-label="Close photo"
+        >
+            ×
+        </button>
+
+        <img
+            id="viewer-image"
+            src=""
+            alt="Selected memory"
+        >
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 4 — THINGS I LOVE ABOUT YOU
+===================================================== -->
+
+<section id="reasons" class="scene reasons-scene">
+
+    <div class="reasons-content">
+
+        <div class="reasons-heading">
+            <h1>Things I Love About You ♡</h1>
+
+            <p>
+                Tap the hearts to discover a few little reasons.
+            </p>
+        </div>
+
+        <div class="reasons-grid">
+
+            <button class="reason-card" data-reason="Your smile ♡">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+            <button class="reason-card" data-reason="How caring you are">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+            <button class="reason-card" data-reason="Your dramatic moments">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+            <button class="reason-card" data-reason="How being with you just feels like home">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+            <button class="reason-card" data-reason="How safe and comfortable I feel with you">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+            <button class="reason-card" data-reason="How you somehow make me miss you even more ♡"">
+                <span class="reason-heart">♥</span>
+                <span class="reason-text"></span>
+            </button>
+
+        </div>
+
+        <p class="reasons-counter">
+            <span id="reasons-opened">0</span> / 6 discovered
+        </p>
+
+       <button id="reasons-next" class="reasons-next-button locked" disabled>
+
+    <svg
+        class="reasons-lock"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+    >
+        <rect
+            x="5"
+            y="10"
+            width="14"
+            height="11"
+            rx="2"
+            stroke="currentColor"
+            stroke-width="2"
+        />
+
+        <path
+            d="M8 10V7a4 4 0 0 1 8 0v3"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="M12 14v3"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+        />
+    </svg>
+
+    <span class="reasons-button-text">
+        Discover them all
+    </span>
+
+</button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 5 — LOVE LETTER
+===================================================== -->
+
+<section id="letter" class="scene letter-scene">
+
+    <div class="letter-content">
+
+        <div class="letter-heading">
+            <h1>A Little Letter for You ♡</h1>
+
+            <p>
+                There are a few things I wanted to say properly.
+            </p>
+        </div>
+
+
+        <!-- ENVELOPE -->
+
+        <div class="envelope-wrapper">
+
+            <button
+                id="open-letter"
+                class="envelope"
+                aria-label="Open love letter"
+            >
+
+                <div class="envelope-back"></div>
+
+                <div class="letter-paper">
+
+                    <div class="letter-paper-content">
+
+ <h2>Dear Dul,</h2>
+
+    <p>
+        Happy birthday, my love ♡
+    </p>
+
+    <p>
+        I hope you know how special you are to me.
+        Every moment with you means more than I can properly
+        put into words.
+    </p>
+
+    <p>
+        Thank you for all the memories, laughs, and little
+        moments we have together.
+    </p>
+
+    <p class="letter-signature">
+        Love,<br>
+        Kalana ♡
+    </p>
+
+                    </div>
+
+                </div>
+
+                <div class="envelope-front"></div>
+
+                <div class="envelope-flap"></div>
+
+                <div class="heart-seal">♥</div>
+
+            </button>
+
+        </div>
+
+
+        <p id="letter-hint" class="letter-hint">
+            Tap the envelope to open it ♡
+        </p>
+
+
+        <button
+            id="letter-next"
+            class="letter-next-button"
+            disabled
+        >
+            Keep going
+            <span>→</span>
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 6 — MISUU HEART CATCH GAME
+===================================================== -->
+
+<section id="game" class="scene game-scene">
+
+    <div class="game-content">
+
+        <div class="game-heading">
+            <h1>Misuu Needs Your Help! ♡</h1>
+
+            <p>
+                Catch 10 hearts to unlock the surprise.
+            </p>
+        </div>
+
+
+        <!-- GAME AREA -->
+
+        <div id="game-area" class="game-area">
+
+            <div class="game-score">
+                <span>♥</span>
+                <span id="game-score-number">0</span>
+                <span>/ 10</span>
+            </div>
+
+            <img
+                id="game-misuu"
+                class="game-misuu"
+                src="assets/misuu/misuu-catching.png"
+                alt="Misuu catching hearts"
+            >
+
+        </div>
+
+
+        <p id="game-message" class="game-message">
+            Tap the hearts before they disappear!
+        </p>
+
+
+        <button
+            id="game-next"
+            class="game-next-button locked"
+            disabled
+        >
+
+            <svg
+                class="game-lock"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <rect
+                    x="5"
+                    y="10"
+                    width="14"
+                    height="11"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M12 14v3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+            </svg>
+
+            <span>Catch all 10 hearts</span>
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 7 — FINAL SURPRISE
+===================================================== -->
+
+<section id="surprise" class="scene surprise-scene">
+
+    <div id="surprise-particles" class="surprise-particles" aria-hidden="true"></div>
+
+    <div class="surprise-content">
+
+        <!-- BEFORE GIFT OPENS -->
+
+        <div id="gift-stage" class="gift-stage">
+
+            <div class="surprise-heading">
+
+                <h1>One Last Thing... ♡</h1>
+
+                <p>
+                    Misuu has been hiding something for you.
+                </p>
+
+            </div>
+
+            <button
+                id="open-gift"
+                class="gift-button"
+                aria-label="Open the final surprise"
+            >
+
+                <img
+                    src="assets/misuu/misuu-gift.png"
+                    alt="Misuu inside a gift box"
+                    class="gift-misuu-image"
+                >
+
+            </button>
+
+            <p class="gift-hint">
+                Tap the gift ♡
+            </p>
+
+        </div>
+
+
+        <!-- VIDEO REVEAL -->
+
+        <div id="video-stage" class="video-stage">
+
+            <p class="video-intro">
+                I saved this for last... ♡
+            </p>
+
+            <div class="birthday-video-wrapper">
+
+                <video
+                    id="birthday-video"
+                    class="birthday-video"
+                    playsinline
+                    preload="metadata"
+                >
+
+                    <source
+                        src="assets/video/birthday-video.mp4"
+                        type="video/mp4"
+                    >
+
+                    Your browser does not support video playback.
+
+                </video>
+
+            </div>
+
+        </div>
+
+
+        <!-- AFTER VIDEO -->
+
+        <div id="final-message" class="final-message">
+
+            <h2>Happy Birthday, Dul ♥</h2>
+
+            <p>
+                I hope this little thing made your day a little more special.
+                You deserve all the happiness in the world ♡
+            </p>
+
+        </div>
+
+
+   <button
+    id="surprise-next"
+    class="surprise-next-button"
+    disabled
+>
+    One more thing
+    <span>→</span>
+</button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PAGE 8 — ENDING
+===================================================== -->
+
+<section id="ending" class="scene ending-scene">
+
+    <!-- Subtle background stars -->
+    <div class="ending-stars" aria-hidden="true">
+
+        <span>✦</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>·</span>
+
+    </div>
+
+
+    <div class="ending-content">
+
+        <!-- MISUU -->
+
+        <div class="ending-misuu-wrapper">
+
+            <img
+                src="assets/misuu/misuu-sleeping.png"
+                alt="Misuu sleeping"
+                class="ending-misuu"
+            >
+
+        </div>
+
+
+        <!-- END MESSAGE -->
+
+        <div class="ending-message">
+
+            <p class="ending-small">
+                That's all for now...
+            </p>
+
+            <h1>
+                Happy Birthday,<br>
+                Dul ♡
+            </h1>
+
+            <p class="ending-text">
+                I hope this little birthday adventure
+                made you smile and made your day
+                a little more special.
+            </p>
+
+            <div class="ending-heart">
+                ♥
+            </div>
+
+            <p class="ending-date">
+                10 • 09 • 2026
+            </p>
+
+        </div>
+
+
+        <!-- REPLAY -->
+
+        <button
+            id="replay-birthday"
+            class="replay-button"
+        >
+            See it again
+            <span>↻</span>
+        </button>
+
+
+        <p class="ending-footer">
+            made with ♡ for Dul
+        </p>
+
+    </div>
+
+</section>
+
+    </main>
+
+    <script src="js/countdown.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>

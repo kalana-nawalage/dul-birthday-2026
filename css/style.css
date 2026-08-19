@@ -1,0 +1,3228 @@
+:root {
+    --bg: #111224;
+    --surface: #1d1e31;
+    --surface-light: #27283c;
+
+    --pink: #ffb0cb;
+    --pink-strong: #ff7fb1;
+    --lavender: #dbb8ff;
+
+    --text: #f8f4ff;
+    --text-muted: #c8bdd7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100%;
+
+    background: var(--bg);
+}
+
+body {
+    font-family: "Manrope", sans-serif;
+    color: var(--text);
+}
+
+.scene {
+    display: none;
+    min-height: 100vh;
+}
+
+.scene.active {
+    display: flex;
+}
+
+.countdown-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            rgba(219, 184, 255, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(255, 176, 203, 0.08),
+            transparent 30%
+        ),
+        #111224;
+}
+
+.countdown-content {
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.misuu-area {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 34px;
+}
+
+.misuu-placeholder {
+    position: relative;
+
+    width: 170px;
+    height: 170px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.02)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 18px 60px rgba(0, 0, 0, 0.22),
+        inset 0 0 30px rgba(255, 176, 203, 0.03);
+
+    animation: misuuBreathing 3.5s ease-in-out infinite;
+transform-origin: center bottom;
+}
+
+.misuu-image {
+    width: 150px;
+    height: 150px;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+.zzz {
+    position: absolute;
+
+    top: 5px;
+    right: 8px;
+
+    font-family: "Space Mono", monospace;
+    font-size: 13px;
+
+    color: var(--lavender);
+
+    animation: zzzFloat 2.5s ease-in-out infinite;
+}
+
+.eyebrow {
+    margin: 0 0 12px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 11px;
+    letter-spacing: 0.18em;
+
+    color: var(--pink);
+}
+
+.countdown-text h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 7vw, 4.8rem);
+    line-height: 1;
+
+    font-weight: 700;
+}
+
+.subtitle {
+    margin: 18px auto 0;
+
+    max-width: 520px;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.timer-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-top: 46px;
+}
+
+.timer-card {
+    min-height: 112px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.03)
+        );
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    box-shadow:
+        0 14px 40px rgba(0, 0, 0, 0.16);
+
+    backdrop-filter: blur(12px);
+}
+
+.timer-number {
+    font-family: "Space Mono", monospace;
+
+    font-size: clamp(1.8rem, 6vw, 3rem);
+
+    font-weight: 700;
+
+    color: var(--pink);
+}
+
+.timer-label {
+    margin-top: 8px;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 10px;
+
+    letter-spacing: 0.16em;
+
+    color: var(--text-muted);
+}
+
+.guard-message {
+    margin-top: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    font-size: 0.8rem;
+    color: #9d91ae;
+}
+
+.lock-icon {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+
+    color: #9d91ae;
+}
+
+@keyframes misuuFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes zzzFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    40% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes misuuBreathing {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
+}
+
+.background-sparkles {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.background-sparkles span {
+    position: absolute;
+
+    color: rgba(219, 184, 255, 0.22);
+
+    font-size: 14px;
+
+    animation: sparkleFade 4s ease-in-out infinite;
+}
+
+.background-sparkles span:nth-child(1) {
+    top: 15%;
+    left: 12%;
+}
+
+.background-sparkles span:nth-child(2) {
+    top: 30%;
+    left: 85%;
+}
+
+.background-sparkles span:nth-child(3) {
+    top: 72%;
+    left: 18%;
+}
+
+.background-sparkles span:nth-child(4) {
+    top: 80%;
+    left: 78%;
+}
+
+.background-sparkles span:nth-child(5) {
+    top: 48%;
+    left: 6%;
+}
+
+.background-sparkles span:nth-child(6) {
+    top: 20%;
+    left: 72%;
+}
+
+.background-sparkles span:nth-child(2n) {
+    animation-delay: 1.5s;
+}
+
+@keyframes sparkleFade {
+    0%,
+    100% {
+        opacity: 0.15;
+        transform: scale(0.9);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.15);
+    }
+}
+
+/* =========================
+   WELCOME / UNLOCK
+   ========================= */
+
+.welcome-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255, 127, 177, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 80%,
+            rgba(219, 184, 255, 0.10),
+            transparent 35%
+        ),
+        #111224;
+}
+#heart-particles {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -30px;
+
+    color: var(--pink);
+
+    opacity: 0;
+
+    filter: drop-shadow(0 0 6px rgba(255, 127, 177, 0.35));
+
+    animation: floatHeart linear forwards;
+}
+
+@keyframes floatHeart {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(0deg);
+    }
+
+    15% {
+        opacity: 0.7;
+    }
+
+    80% {
+        opacity: 0.45;
+    }
+
+    100% {
+        opacity: 0;
+        transform:
+            translateY(-110vh)
+            translateX(var(--drift))
+            rotate(20deg);
+    }
+}
+
+.welcome-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 700px;
+
+    text-align: center;
+}
+
+.welcome-misuu {
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 20px;
+}
+
+.welcome-misuu-image {
+    width: 190px;
+    height: 190px;
+
+    object-fit: contain;
+    image-rendering: pixelated;
+
+    user-select: none;
+    pointer-events: none;
+
+    animation: welcomeMisuu 3s ease-in-out infinite;
+}
+
+
+.welcome-content h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.8rem, 7vw, 5rem);
+
+    color: var(--text);
+}
+
+.welcome-message {
+    margin: 18px auto 0;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+}
+
+.follow-button {
+    margin-top: 38px;
+
+    padding: 15px 28px;
+
+    border: 1px solid rgba(255, 176, 203, 0.3);
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: #ffffff;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 12px 35px rgba(255, 127, 177, 0.18);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.follow-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 16px 45px rgba(255, 127, 177, 0.28);
+}
+
+.follow-button span {
+    margin-left: 7px;
+}
+
+@keyframes welcomeMisuu {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.welcome-sparkles {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.welcome-sparkles span {
+    position: absolute;
+
+    color: var(--pink);
+
+    opacity: 0;
+
+    animation: welcomeSparkle 3s ease-in-out infinite;
+}
+
+.welcome-sparkles span:nth-child(1) {
+    top: 20%;
+    left: 20%;
+}
+
+.welcome-sparkles span:nth-child(2) {
+    top: 30%;
+    right: 18%;
+}
+
+.welcome-sparkles span:nth-child(3) {
+    bottom: 25%;
+    left: 15%;
+}
+
+.welcome-sparkles span:nth-child(4) {
+    top: 15%;
+    right: 35%;
+}
+
+.welcome-sparkles span:nth-child(5) {
+    bottom: 18%;
+    right: 20%;
+}
+
+.welcome-sparkles span:nth-child(6) {
+    top: 48%;
+    left: 8%;
+}
+
+.welcome-sparkles span:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.welcome-sparkles span:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+@keyframes welcomeSparkle {
+    0%,
+    100% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: scale(1.1);
+    }
+}
+
+.scene-exit {
+    animation: sceneFadeOut 0.9s ease forwards;
+}
+
+.scene-enter {
+    animation: sceneFadeIn 1.1s ease forwards;
+}
+
+@keyframes sceneFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+@keyframes sceneFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* =========================
+   Page 2 HAPPY BIRTHDAY
+   ========================= */
+
+.birthday-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 127, 177, 0.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 30% 25%,
+            rgba(219, 184, 255, 0.12),
+            transparent 25%
+        ),
+        #111224;
+}
+
+.birthday-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.birthday-content h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.7rem, 7vw, 5.2rem);
+    line-height: 1.05;
+
+    color: var(--text);
+}
+
+.birthday-content h1 span {
+    color: var(--pink);
+}
+
+.birthday-misuu {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 28px;
+}
+
+.birthday-misuu-image {
+    width: 240px;
+    height: 240px;
+
+    object-fit: contain;
+    image-rendering: pixelated;
+
+    animation: misuuDanceFloat 1.8s ease-in-out infinite;
+}
+
+.birthday-message {
+    margin-top: 22px;
+
+    color: var(--text-muted);
+
+    font-size: 1rem;
+}
+
+.birthday-button {
+    margin-top: 32px;
+
+    padding: 15px 28px;
+
+    border: 1px solid rgba(255, 176, 203, 0.3);
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow: 0 14px 40px rgba(255, 127, 177, 0.22);
+}
+
+.music-button {
+    position: absolute;
+
+    top: 24px;
+    right: 24px;
+
+    z-index: 4;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.07);
+
+    color: var(--pink);
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+}
+
+.birthday-particles {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.birthday-particles span {
+    position: absolute;
+
+    opacity: 0;
+
+    color: var(--pink);
+
+    animation: birthdayParticle 4s ease-in-out infinite;
+}
+
+.birthday-particles span:nth-child(1) {
+    top: 15%;
+    left: 12%;
+}
+
+.birthday-particles span:nth-child(2) {
+    top: 25%;
+    right: 15%;
+}
+
+.birthday-particles span:nth-child(3) {
+    top: 45%;
+    left: 10%;
+}
+
+.birthday-particles span:nth-child(4) {
+    bottom: 20%;
+    right: 12%;
+}
+
+.birthday-particles span:nth-child(5) {
+    bottom: 30%;
+    left: 18%;
+}
+
+.birthday-particles span:nth-child(6) {
+    top: 20%;
+    left: 70%;
+}
+
+.birthday-particles span:nth-child(7) {
+    bottom: 15%;
+    left: 55%;
+}
+
+.birthday-particles span:nth-child(8) {
+    top: 12%;
+    left: 40%;
+}
+
+.birthday-particles span:nth-child(2n) {
+    animation-delay: 1s;
+}
+
+.birthday-particles span:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+@keyframes birthdayParticle {
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.8);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: translateY(-8px) scale(1.15);
+    }
+}
+
+@keyframes misuuDanceFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(1deg);
+    }
+}
+
+/* =====================================================
+   PAGE 3 — OUR PHOTOS / MEMORIES
+===================================================== */
+
+.photos-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    padding: 60px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(219, 184, 255, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 70% 70%,
+            rgba(255, 127, 177, 0.10),
+            transparent 30%
+        ),
+        #111224;
+}
+
+
+.photos-content {
+    width: 100%;
+    max-width: 950px;
+
+    text-align: center;
+}
+
+
+.photos-heading h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+    color: var(--text);
+}
+
+
+.photos-heading p {
+    margin-top: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 0.95rem;
+}
+
+.photo-collage {
+    position: relative;
+
+    margin: 55px auto 30px;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 38px 24px;
+
+    align-items: center;
+}
+
+.photo-2 {
+    transform: translateY(18px) rotate(3deg);
+}
+
+.photo-3 {
+    transform: translateY(-8px) rotate(-2deg);
+}
+
+.photo-4 {
+    transform: translateY(14px) rotate(5deg);
+}
+
+.photo-5 {
+    transform: translateY(-6px) rotate(3deg);
+}
+
+.photo-6 {
+    transform: translateY(15px) rotate(-4deg);
+}
+
+.photo-7 {
+    transform: translateY(-10px) rotate(5deg);
+}
+
+.photo-8 {
+    transform: translateY(10px) rotate(-3deg);
+}
+
+.scrap-decoration {
+    position: absolute;
+
+    z-index: 4;
+
+    pointer-events: none;
+
+    color: var(--pink);
+}
+
+.scrap-heart {
+    top: 23%;
+    left: -2%;
+
+    font-size: 30px;
+
+    transform: rotate(-15deg);
+}
+
+.scrap-star {
+    top: 52%;
+    right: -1%;
+
+    color: var(--lavender);
+
+    font-size: 22px;
+}
+
+.scrap-note {
+    top: 47%;
+    left: 46%;
+
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+
+    font-size: 1rem;
+
+    color: var(--pink);
+
+    transform: rotate(-8deg);
+}
+
+.scrap-moments {
+    bottom: 22%;
+    left: 42%;
+
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+
+    font-size: 0.9rem;
+
+    color: var(--text-muted);
+
+    transform: rotate(5deg);
+}
+
+
+.polaroid {
+    position: relative;
+
+    padding: 9px 9px 28px;
+
+    border: none;
+
+    background: #fff7ed;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.30);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.polaroid img {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    object-fit: cover;
+}
+
+
+.photo-1 {
+    transform: rotate(-5deg);
+}
+
+.photo-2 {
+    transform: rotate(3deg);
+}
+
+.photo-3 {
+    transform: rotate(-2deg);
+}
+
+.photo-4 {
+    transform: rotate(5deg);
+}
+
+.photo-5 {
+    transform: rotate(3deg);
+}
+
+.photo-6 {
+    transform: rotate(-4deg);
+}
+
+.photo-7 {
+    transform: rotate(5deg);
+}
+
+.photo-8 {
+    transform: rotate(-3deg);
+}
+
+
+.polaroid:hover {
+    transform:
+        rotate(0deg)
+        translateY(-8px)
+        scale(1.04);
+
+    z-index: 5;
+
+    box-shadow:
+        0 22px 50px rgba(0, 0, 0, 0.40);
+}
+
+.photo-hint {
+    margin-top: 35px;
+
+    font-size: 0.8rem;
+
+    color: #9d91ae;
+}
+
+
+.photos-next-button {
+    margin-top: 22px;
+
+    padding: 14px 28px;
+
+    border: 1px solid rgba(255, 176, 203, 0.3);
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.95rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 14px 40px rgba(255, 127, 177, 0.18);
+}
+
+.photo-viewer {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    background: rgba(8, 8, 20, 0.88);
+
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+
+.photo-viewer.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.photo-viewer img {
+    max-width: min(90vw, 700px);
+    max-height: 82vh;
+
+    border: 10px solid #fff7ed;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.5);
+}
+
+
+.close-photo {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 45px;
+    height: 45px;
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: white;
+
+    font-size: 26px;
+
+    cursor: pointer;
+}
+
+/* Decorative tape */
+
+.photo-1::before,
+.photo-4::before,
+.photo-6::before,
+.photo-8::before {
+    content: "";
+
+    position: absolute;
+
+    width: 55px;
+    height: 18px;
+
+    top: -10px;
+    left: 50%;
+
+    transform: translateX(-50%) rotate(-3deg);
+
+    background: rgba(255, 176, 203, 0.65);
+
+    z-index: 3;
+}
+
+.photo-4::before {
+    background: rgba(219, 184, 255, 0.65);
+    transform: translateX(-50%) rotate(4deg);
+}
+
+.photo-6::before {
+    background: rgba(252, 185, 115, 0.65);
+    transform: translateX(-50%) rotate(-5deg);
+}
+
+/* =====================================================
+   PAGE 4 — THINGS I LOVE ABOUT YOU
+===================================================== */
+
+.reasons-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255, 127, 177, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 30% 75%,
+            rgba(219, 184, 255, 0.10),
+            transparent 30%
+        ),
+        #111224;
+}
+
+.reasons-content {
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.reasons-heading h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.4rem, 6vw, 4.3rem);
+
+    color: var(--text);
+}
+
+.reasons-heading p {
+    margin-top: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 0.95rem;
+}
+
+.reasons-grid {
+    margin: 42px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.reason-card {
+    min-height: 150px;
+
+    padding: 18px;
+
+    border: 1px solid rgba(255, 176, 203, 0.15);
+    border-radius: 26px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.07),
+            rgba(255, 255, 255, 0.03)
+        );
+
+    color: white;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-4px);
+}
+
+.reason-heart {
+    font-size: 38px;
+    color: var(--pink);
+
+    transition:
+        transform 0.35s ease,
+        opacity 0.35s ease;
+}
+
+.reason-text {
+    display: none;
+
+    font-size: 0.9rem;
+    line-height: 1.5;
+
+    color: var(--text);
+}
+
+.reason-card.revealed {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 127, 177, 0.16),
+            rgba(219, 184, 255, 0.08)
+        );
+}
+
+.reason-card.revealed .reason-heart {
+    display: none;
+}
+
+.reason-card.revealed .reason-text {
+    display: block;
+}
+
+.reasons-counter {
+    margin-top: 28px;
+
+    color: #9d91ae;
+
+    font-size: 0.78rem;
+}
+
+.reasons-next-button {
+    margin-top: 18px;
+
+    padding: 13px 25px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.reasons-next-button.locked {
+    opacity: 0.45;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.reasons-next-button:not(.locked) {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.reasons-lock {
+    width: 15px;
+    height: 15px;
+
+    margin-right: 6px;
+
+    flex-shrink: 0;
+}
+
+/* =====================================================
+   PAGE 5 — LOVE LETTER
+===================================================== */
+
+.letter-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            rgba(255, 176, 203, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 30% 75%,
+            rgba(219, 184, 255, 0.08),
+            transparent 30%
+        ),
+        #111224;
+}
+
+.letter-content {
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.letter-heading h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.4rem, 6vw, 4.2rem);
+
+    color: var(--text);
+}
+
+.letter-heading p {
+    margin-top: 12px;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+}
+
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+
+    margin-top: 44px;
+
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+
+    width: 420px;
+    height: 270px;
+
+    padding: 0;
+    border: none;
+
+    background: transparent;
+    cursor: pointer;
+
+    transition: transform 0.7s ease;
+}
+
+.envelope.open {
+    transform: translateY(50px);
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    border-radius: 14px;
+
+    background: #f3c8d5;
+
+    box-shadow:
+        0 22px 60px rgba(0, 0, 0, 0.28);
+}
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+
+    z-index: 4;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f3c8d5,
+            #e5a7ba
+        );
+
+    clip-path: polygon(
+        0 38%,
+        50% 72%,
+        100% 38%,
+        100% 100%,
+        0 100%
+    );
+}
+
+.envelope-flap {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 58%;
+
+    z-index: 3;
+
+    background: #f8d7e1;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    transform-origin: top center;
+
+    transition: transform 0.7s ease;
+}
+
+.heart-seal {
+    position: absolute;
+
+    z-index: 5;
+
+    top: 102px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: var(--pink-strong);
+
+    color: white;
+
+    font-size: 24px;
+
+    box-shadow:
+        0 8px 25px rgba(255, 127, 177, 0.35);
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+.letter-paper {
+    position: absolute;
+
+    z-index: 2;
+
+    width: 88%;
+    height: 220px;
+
+    left: 6%;
+    top: 18px;
+
+    padding: 28px 26px;
+
+    background: #fff7ed;
+
+    color: #4b3340;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.18);
+
+    overflow-y: auto;
+
+    transform: translateY(40px);
+
+    transition:
+        transform 0.9s ease,
+        height 0.9s ease;
+}
+
+.letter-paper-content {
+    text-align: left;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 1rem;
+    line-height: 1.75;
+
+    opacity: 0;
+    transition: opacity 0.5s ease 0.35s;
+}
+
+.envelope.open .letter-paper-content {
+    opacity: 1;
+}
+
+.letter-paper-content h2 {
+    margin-top: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 1.8rem;
+}
+
+.letter-signature {
+    margin-top: 18px;
+
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(160deg);
+    z-index: 1;
+}
+
+.envelope.open .heart-seal {
+    opacity: 0;
+
+    transform:
+        translateX(-50%)
+        scale(0.7);
+}
+
+.envelope.open .letter-paper {
+    transform: translateY(-130px);
+
+     z-index: 6;
+
+    height: 330px;
+}
+
+.letter-hint {
+    margin-top: 24px;
+
+    color: #9d91ae;
+
+    font-size: 0.78rem;
+}
+
+.letter-hint.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.letter-next-button {
+    margin-top: 16px;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    opacity: 0.35;
+
+    transition: opacity 0.4s ease;
+}
+
+.letter-next-button.unlocked {
+    opacity: 1;
+}
+
+/* =====================================================
+   PAGE 6 — MISUU HEART CATCH GAME
+===================================================== */
+
+.game-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 55%,
+            rgba(255, 127, 177, 0.14),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 25% 30%,
+            rgba(219, 184, 255, 0.10),
+            transparent 30%
+        ),
+        #111224;
+}
+
+.game-content {
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.game-heading h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.3rem, 6vw, 4rem);
+
+    color: var(--text);
+}
+
+.game-heading p {
+    margin-top: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+}
+
+.game-area {
+    position: relative;
+
+    width: 100%;
+    max-width: 560px;
+    height: 370px;
+
+    margin: 30px auto 0;
+
+    overflow: hidden;
+
+    border-radius: 28px;
+
+    border: 1px solid rgba(255, 176, 203, 0.12);
+
+    background:
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255, 127, 177, 0.16),
+            transparent 40%
+        ),
+        rgba(255, 255, 255, 0.025);
+
+    box-shadow:
+        inset 0 0 50px rgba(255, 176, 203, 0.03);
+}
+
+.game-score {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    padding: 8px 13px;
+
+    border-radius: 999px;
+
+    background: rgba(17, 18, 36, 0.78);
+
+    color: var(--text);
+
+    font-family: "Space Mono", monospace;
+    font-size: 0.78rem;
+
+    backdrop-filter: blur(8px);
+}
+
+.game-score span:first-child {
+    color: var(--pink);
+}
+
+.game-misuu {
+    position: absolute;
+
+    width: 145px;
+    height: 145px;
+
+    left: 50%;
+    bottom: 18px;
+
+    transform: translateX(-50%);
+
+    object-fit: contain;
+    image-rendering: pixelated;
+
+    user-select: none;
+    pointer-events: none;
+
+    transition: transform 0.18s ease;
+}
+
+.game-misuu.catch {
+    transform:
+        translateX(-50%)
+        translateY(-12px)
+        scale(1.06);
+}
+
+.game-heart {
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--pink);
+
+    cursor: pointer;
+
+    filter:
+        drop-shadow(
+            0 0 8px rgba(255, 127, 177, 0.45)
+        );
+
+    animation:
+        heartAppear 0.25s ease,
+        heartPulse 1.2s ease-in-out infinite;
+
+    touch-action: manipulation;
+}
+
+.game-heart.caught {
+    pointer-events: none;
+
+    animation: heartCaught 0.35s ease forwards;
+}
+
+@keyframes heartPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.12);
+    }
+}
+
+@keyframes heartAppear {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes heartCaught {
+    to {
+        opacity: 0;
+
+        transform:
+            scale(1.8)
+            translateY(-10px);
+    }
+}
+
+.game-message {
+    margin-top: 18px;
+
+    color: #9d91ae;
+
+    font-size: 0.78rem;
+}
+
+.game-next-button {
+    margin-top: 13px;
+
+    padding: 11px 22px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: none;
+    border-radius: 999px;
+
+    background: linear-gradient(
+        135deg,
+        #ff7fb1,
+        #d984ba
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+.game-next-button.locked {
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+.game-next-button:not(.locked) {
+    opacity: 1;
+
+    cursor: pointer;
+}
+
+.game-lock {
+    width: 15px;
+    height: 15px;
+}
+
+/* =====================================================
+   PAGE 7 — FINAL SURPRISE
+===================================================== */
+
+.surprise-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 127, 177, 0.18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 30% 75%,
+            rgba(219, 184, 255, 0.10),
+            transparent 30%
+        ),
+        #111224;
+}
+
+.surprise-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 760px;
+
+    text-align: center;
+}
+
+.surprise-heading h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+
+    color: var(--text);
+}
+
+.surprise-heading p {
+    margin-top: 10px;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+}
+
+.gift-button {
+    margin-top: 35px;
+
+    padding: 0;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+}
+
+.gift-misuu-image {
+    width: 260px;
+    height: 260px;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+
+    user-select: none;
+
+    animation: giftFloat 2.2s ease-in-out infinite;
+}
+
+.gift-button:hover .gift-misuu-image {
+    transform: scale(1.04);
+}
+
+.gift-hint {
+    margin-top: 10px;
+
+    color: #9d91ae;
+
+    font-size: 0.78rem;
+}
+
+@keyframes giftFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+.gift-button.opening {
+    animation: giftShake 0.65s ease;
+}
+
+@keyframes giftShake {
+
+    0%,
+    100% {
+        transform: rotate(0);
+    }
+
+    20% {
+        transform: rotate(-4deg);
+    }
+
+    40% {
+        transform: rotate(4deg);
+    }
+
+    60% {
+        transform: rotate(-3deg);
+    }
+
+    80% {
+        transform: rotate(3deg);
+    }
+
+}
+
+.video-stage {
+    display: none;
+
+    opacity: 0;
+}
+
+.video-stage.show {
+    display: block;
+
+    animation: videoStageIn 0.8s ease forwards;
+}
+
+@keyframes videoStageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.video-intro {
+    margin-bottom: 18px;
+
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+
+    color: var(--pink);
+
+    font-size: 1.2rem;
+}
+
+.birthday-video-wrapper {
+    width: min(100%, 620px);
+
+    margin: 0 auto;
+
+    padding: 7px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 176, 203, 0.65),
+            rgba(219, 184, 255, 0.45)
+        );
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+.birthday-video {
+    display: block;
+
+    width: 100%;
+    max-height: 55vh;
+
+    border-radius: 16px;
+
+    object-fit: contain;
+
+    background: #080812;
+}
+
+.final-message {
+    display: none;
+
+    max-width: 520px;
+
+    margin: 22px auto 0;
+
+    opacity: 0;
+}
+
+.final-message.show {
+    display: block;
+
+    animation: finalMessageIn 0.8s ease forwards;
+}
+
+.final-message h2 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 2.2rem;
+
+    color: var(--pink);
+}
+
+.final-message p {
+    margin-top: 10px;
+
+    color: var(--text-muted);
+
+    line-height: 1.65;
+
+    font-size: 0.9rem;
+}
+
+@keyframes finalMessageIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+.surprise-next-button {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 999px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff7fb1,
+            #d984ba
+        );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.surprise-next-button.unlocked {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    animation: finalMessageIn 0.8s ease forwards;
+}
+
+.surprise-particles {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.surprise-particle {
+    position: absolute;
+
+    color: var(--pink);
+
+    font-size: 18px;
+
+    animation:
+        surpriseBurst 1.3s ease-out forwards;
+}
+
+@keyframes surpriseBurst {
+
+    from {
+        opacity: 1;
+
+        transform:
+            translate(0, 0)
+            scale(0.7);
+    }
+
+    to {
+        opacity: 0;
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(1.4);
+    }
+
+}
+
+/* =====================================================
+   PAGE 8 — ENDING
+===================================================== */
+
+.ending-scene {
+    position: relative;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 32px 20px;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(219, 184, 255, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 50% 75%,
+            rgba(255, 127, 177, 0.10),
+            transparent 35%
+        ),
+        #111224;
+}
+
+.ending-content {
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+    max-width: 600px;
+
+    text-align: center;
+}
+
+/* =====================================================
+   PAGE 8 — SLEEPING MISUU
+===================================================== */
+
+.ending-misuu-wrapper {
+    margin-bottom: 20px;
+}
+
+.ending-misuu {
+    width: 180px;
+    height: 180px;
+
+    object-fit: contain;
+
+    image-rendering: pixelated;
+
+    user-select: none;
+
+    animation:
+        endingMisuuSleep 3.5s
+        ease-in-out infinite;
+
+    transform-origin: center bottom;
+}
+
+@keyframes endingMisuuSleep {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.025);
+    }
+
+}
+
+/* =====================================================
+   PAGE 8 — END MESSAGE
+===================================================== */
+
+.ending-small {
+    margin: 0 0 7px;
+
+    color: var(--pink);
+
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+
+    font-size: 1rem;
+}
+
+.ending-message h1 {
+    margin: 0;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(2.5rem, 6vw, 4rem);
+
+    line-height: 1.1;
+
+    color: var(--text);
+}
+
+.ending-text {
+    max-width: 430px;
+
+    margin: 18px auto 0;
+
+    color: var(--text-muted);
+
+    font-size: 0.9rem;
+
+    line-height: 1.7;
+}
+
+.ending-heart {
+    margin-top: 18px;
+
+    color: var(--pink);
+
+    font-size: 1.3rem;
+
+    animation:
+        endingHeartBeat
+        1.8s ease-in-out infinite;
+}
+
+@keyframes endingHeartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+.ending-date {
+    margin-top: 8px;
+
+    color: #8f849f;
+
+    font-family: "Space Mono", monospace;
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.12em;
+}
+
+/* =====================================================
+   PAGE 8 — REPLAY BUTTON
+===================================================== */
+
+.replay-button {
+    margin-top: 22px;
+
+    padding: 11px 22px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    border: 1px solid
+        rgba(255, 176, 203, 0.35);
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 176, 203, 0.08);
+
+    color: var(--pink);
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.replay-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(255, 176, 203, 0.14);
+}
+
+.ending-footer {
+    margin-top: 17px;
+
+    color: #8f849f;
+
+    font-size: 0.67rem;
+}
+
+/* =====================================================
+   PAGE 8 — BACKGROUND STARS
+===================================================== */
+
+.ending-stars {
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 1;
+}
+
+.ending-stars span {
+    position: absolute;
+
+    color: rgba(255, 224, 239, 0.45);
+
+    animation:
+        endingStarTwinkle
+        3s ease-in-out infinite;
+}
+
+.ending-stars span:nth-child(1) {
+    left: 15%;
+    top: 18%;
+}
+
+.ending-stars span:nth-child(2) {
+    left: 76%;
+    top: 16%;
+}
+
+.ending-stars span:nth-child(3) {
+    left: 84%;
+    top: 41%;
+
+    animation-delay: 0.8s;
+}
+
+.ending-stars span:nth-child(4) {
+    left: 12%;
+    top: 55%;
+
+    animation-delay: 1.2s;
+}
+
+.ending-stars span:nth-child(5) {
+    left: 73%;
+    top: 77%;
+
+    animation-delay: 1.7s;
+}
+
+.ending-stars span:nth-child(6) {
+    left: 26%;
+    top: 82%;
+
+    animation-delay: 0.5s;
+}
+
+@keyframes endingStarTwinkle {
+
+    0%,
+    100% {
+        opacity: 0.25;
+        transform: scale(0.8);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .countdown-scene {
+        padding: 26px 16px;
+    }
+
+    .misuu-placeholder {
+        width: 145px;
+        height: 145px;
+    }
+
+    .misuu-image {
+    width: 125px;
+    height: 125px;
+    }
+
+    .timer-grid {
+        gap: 8px;
+        margin-top: 36px;
+    }
+
+    .timer-card {
+        min-height: 96px;
+
+        border-radius: 18px;
+    }
+
+    .timer-number {
+        font-size: 1.55rem;
+    }
+
+    .timer-label {
+        font-size: 8px;
+    }
+
+    .welcome-misuu-image {
+    width: 160px;
+    height: 160px;
+}
+
+.welcome-content h1 {
+    font-size: 2.7rem;
+}
+
+.welcome-message {
+    max-width: 300px;
+    line-height: 1.6;
+}
+
+.follow-button {
+    margin-top: 32px;
+    padding: 14px 25px;
+}
+
+.birthday-content h1 {
+    font-size: 2.6rem;
+}
+
+.birthday-misuu-image {
+    width: 190px;
+    height: 190px;
+}
+
+.music-button {
+    top: 18px;
+    right: 18px;
+
+    width: 40px;
+    height: 40px;
+}
+
+.birthday-message {
+    font-size: 0.95rem;
+}
+
+.birthday-button {
+    margin-top: 28px;
+}
+/* =====================================================
+   PAGE 3 — OUR PHOTOS / MOBILE FIT-TO-SCREEN
+===================================================== */
+
+/* =====================================================
+   PAGE 3 — IPHONE 8 COMPACT LAYOUT
+===================================================== */
+
+.photos-scene {
+    height: 100dvh;
+    min-height: 100dvh;
+
+    padding: 14px 10px 14px;
+
+    overflow: hidden;
+
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.photos-content {
+    width: 100%;
+    max-width: 375px;
+}
+
+.photos-heading h1 {
+    font-size: 1.7rem;
+    line-height: 1;
+    margin: 0;
+}
+
+.photos-heading p {
+    margin-top: 4px;
+    margin-bottom: 0;
+
+    font-size: 0.68rem;
+}
+
+.photo-collage {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px 12px;
+
+    margin: 12px auto 3px;
+
+    padding: 0 24px;
+}
+
+.polaroid {
+    padding: 4px 4px 10px;
+}
+
+.polaroid img {
+    width: 100%;
+
+    aspect-ratio: 1.25 / 1;
+
+    object-fit: cover;
+}
+
+.photo-1,
+.photo-2,
+.photo-3,
+.photo-4,
+.photo-5,
+.photo-6,
+.photo-7,
+.photo-8 {
+    transform: none;
+}
+
+.photo-1 {
+    transform: rotate(-2deg);
+}
+
+.photo-2 {
+    transform: rotate(2deg);
+}
+
+.photo-3 {
+    transform: rotate(-1deg);
+}
+
+.photo-4 {
+    transform: rotate(2deg);
+}
+
+.photo-5 {
+    transform: rotate(-2deg);
+}
+
+.photo-6 {
+    transform: rotate(1deg);
+}
+
+.photo-7 {
+    transform: rotate(-1deg);
+}
+
+.photo-8 {
+    transform: rotate(2deg);
+}
+
+.photo-hint {
+    margin-top: 3px;
+    margin-bottom: 0;
+    font-size: 0.62rem;
+}
+
+.photos-next-button {
+    margin-top: 5px;
+    padding: 7px 18px;
+    font-size: 0.72rem;
+}
+
+.photo-viewer {
+    padding: 20px;
+}
+
+
+.photo-viewer img {
+    max-width: 92vw;
+
+    border-width: 7px;
+}
+
+
+.close-photo {
+    top: 18px;
+    right: 18px;
+}
+
+.photo-1 {
+    transform: rotate(-3deg);
+}
+
+.photo-2 {
+    transform: translateY(4px) rotate(2deg);
+}
+
+.photo-3 {
+    transform: translateY(-2px) rotate(-2deg);
+}
+
+.photo-4 {
+    transform: translateY(3px) rotate(3deg);
+}
+
+.photo-5 {
+    transform: translateY(-2px) rotate(2deg);
+}
+
+.photo-6 {
+    transform: translateY(3px) rotate(-2deg);
+}
+
+.photo-7 {
+    transform: translateY(-2px) rotate(2deg);
+}
+
+.photo-8 {
+    transform: translateY(3px) rotate(-2deg);
+}
+
+.scrap-heart {
+    top: 30%;
+    left: 3%;
+    font-size: 20px;
+}
+
+.scrap-star {
+    top: 63%;
+    right: 3%;
+    font-size: 16px;
+}
+
+.scrap-note {
+    display: none;
+}
+
+.scrap-moments {
+    display: none;
+}
+
+.photo-1::before,
+.photo-4::before,
+.photo-6::before,
+.photo-8::before {
+    width: 42px;
+    height: 12px;
+    top: -6px;
+}
+
+/* PAGE 4 — THINGS I LOVE */
+
+.reasons-scene {
+    padding: 24px 14px;
+}
+
+.reasons-heading h1 {
+    font-size: 2rem;
+}
+
+.reasons-heading p {
+    font-size: 0.75rem;
+}
+
+.reasons-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 12px;
+
+    margin-top: 26px;
+}
+
+.reason-card {
+    min-height: 105px;
+
+    padding: 12px;
+
+    border-radius: 20px;
+}
+
+.reason-heart {
+    font-size: 30px;
+}
+
+.reason-text {
+    font-size: 0.72rem;
+}
+
+.reasons-counter {
+    margin-top: 16px;
+}
+
+.reasons-next-button {
+    margin-top: 10px;
+
+    padding: 10px 20px;
+}
+
+/* PAGE 5 — LOVE LETTER */
+
+/* =====================================================
+   PAGE 5 — LOVE LETTER / MOBILE
+===================================================== */
+
+.letter-scene {
+    padding: 22px 14px;
+}
+
+.letter-heading h1 {
+    font-size: 2rem;
+}
+
+.letter-heading p {
+    font-size: 0.72rem;
+}
+
+.envelope-wrapper {
+    margin-top: 45px;
+}
+
+.envelope {
+    width: 280px;
+    height: 185px;
+}
+
+.heart-seal {
+    top: 69px;
+
+    width: 36px;
+    height: 36px;
+
+    font-size: 18px;
+}
+
+.letter-paper {
+    width: 88%;
+    height: 145px;
+
+    left: 6%;
+    top: 20px;
+
+    padding: 18px;
+
+    overflow: hidden;
+
+    transform: translateY(25px);
+}
+
+.envelope.open {
+    transform: translateY(40px);
+}
+
+.envelope.open .letter-paper {
+    width: 84%;
+    left: 8%;
+
+    height: 190px;
+
+    transform: translateY(-25px);
+
+    padding: 17px 16px;
+
+    overflow-y: auto;
+
+    z-index: 6;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(160deg) scaleY(0.78);
+
+    z-index: 1;
+}
+
+.letter-paper-content {
+    font-size: 0.72rem;
+    line-height: 1.55;
+
+    padding-bottom: 15px;
+}
+
+.letter-paper-content h2 {
+    font-size: 1.35rem;
+
+    margin-bottom: 12px;
+}
+
+.letter-signature {
+    margin-top: 12px;
+}
+
+.letter-hint {
+    margin-top: 18px;
+}
+
+.letter-next-button {
+    margin-top: 12px;
+
+    padding: 10px 20px;
+}
+
+/* =====================================================
+   PAGE 6 — MISUU GAME / MOBILE
+===================================================== */
+
+.game-scene {
+    min-height: 100dvh;
+    height: 100dvh;
+
+    padding: 18px 14px;
+
+    overflow: hidden;
+}
+
+.game-heading h1 {
+    font-size: 1.65rem;
+    line-height: 1.15;
+}
+
+.game-heading p {
+    margin-top: 5px;
+
+    font-size: 0.7rem;
+}
+
+.game-area {
+    height: 390px;
+
+    margin-top: 18px;
+
+    border-radius: 22px;
+}
+
+.game-misuu {
+    width: 115px;
+    height: 115px;
+}
+
+.game-score {
+    top: 10px;
+    right: 10px;
+
+    padding: 6px 10px;
+
+    font-size: 0.7rem;
+}
+
+.game-message {
+    margin-top: 9px;
+
+    font-size: 0.68rem;
+}
+
+.game-next-button {
+    margin-top: 7px;
+
+    padding: 9px 18px;
+
+    font-size: 0.72rem;
+}
+
+/* =====================================================
+   PAGE 7 — FINAL SURPRISE / MOBILE
+===================================================== */
+
+.surprise-scene {
+    min-height: 100dvh;
+    height: 100dvh;
+
+    padding: 18px 14px;
+
+    overflow: hidden;
+}
+
+.surprise-heading h1 {
+    font-size: 2rem;
+}
+
+.surprise-heading p {
+    font-size: 0.72rem;
+}
+
+.gift-button {
+    margin-top: 25px;
+}
+
+.gift-misuu-image {
+    width: 215px;
+    height: 215px;
+}
+
+.video-intro {
+    margin-bottom: 12px;
+
+    font-size: 1rem;
+}
+
+.video-stage {
+    transform: translateY(-25px);
+}
+
+.video-stage.show {
+    animation: videoStageInMobile 0.8s ease forwards;
+}
+
+@keyframes videoStageInMobile {
+
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-25px);
+    }
+}
+
+.birthday-video-wrapper {
+    width: 100%;
+
+    max-width: 330px;
+
+    padding: 5px;
+
+    border-radius: 16px;
+}
+
+.birthday-video {
+    max-height: 360px;
+
+    border-radius: 12px;
+}
+
+.final-message {
+    margin-top: 14px;
+}
+
+.final-message h2 {
+    font-size: 1.55rem;
+}
+
+.final-message p {
+    margin-top: 6px;
+
+    font-size: 0.7rem;
+
+    line-height: 1.5;
+}
+
+.surprise-next-button {
+    margin-top: 10px;
+
+    padding: 9px 18px;
+
+    font-size: 0.75rem;
+}
+
+/* =====================================================
+   PAGE 8 — ENDING / MOBILE
+===================================================== */
+
+.ending-scene {
+    width: 100%;
+
+    min-height: 100dvh;
+    height: 100dvh;
+
+    padding: 20px 14px;
+
+    overflow: hidden;
+}
+
+.ending-misuu-wrapper {
+    margin-bottom: 12px;
+}
+
+.ending-misuu {
+    width: 135px;
+    height: 135px;
+}
+
+.ending-small {
+    margin-bottom: 5px;
+
+    font-size: 0.82rem;
+}
+
+.ending-message h1 {
+    font-size: 2.15rem;
+
+    line-height: 1.08;
+}
+
+.ending-text {
+    max-width: 295px;
+
+    margin-top: 13px;
+
+    font-size: 0.72rem;
+
+    line-height: 1.55;
+}
+
+.ending-heart {
+    margin-top: 12px;
+
+    font-size: 1.1rem;
+}
+
+.ending-date {
+    margin-top: 6px;
+
+    font-size: 0.6rem;
+}
+
+.replay-button {
+    margin-top: 16px;
+
+    padding: 9px 18px;
+
+    font-size: 0.72rem;
+}
+
+.ending-footer {
+    margin-top: 12px;
+
+    font-size: 0.6rem;
+}
+
+}
