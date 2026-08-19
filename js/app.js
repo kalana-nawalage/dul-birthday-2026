@@ -529,3 +529,13 @@ if (replayBirthdayButton) {
     });
 
 }
+
+// =====================================================
+// TEMPORARY TEST MODE
+// =====================================================
+
+const params = new URLSearchParams(window.location.search);
+
+if (params.get("test") === "1") {
+    unlockBirthday();
+}
