@@ -22,6 +22,10 @@ function unlockBirthday() {
     setTimeout(() => {
         showScene("welcome");
 
+        if (musicToggle) {
+    musicToggle.classList.add("visible");
+         }
+
         const welcomeScene = document.getElementById("welcome");
 
         if (welcomeScene) {
@@ -69,6 +73,7 @@ const followMisuuButton = document.getElementById("follow-misuu");
 
 if (followMisuuButton) {
     followMisuuButton.addEventListener("click", () => {
+        playBirthdayMusic();
         showScene("birthday");
 
         const birthdayScene = document.getElementById("birthday");
@@ -361,6 +366,8 @@ const finalMessage =
 const surpriseNextButton =
     document.getElementById("surprise-next");
 
+let resumeMusicAfterVideo = false;
+
 
 if (openGiftButton) {
 
@@ -385,17 +392,25 @@ if (openGiftButton) {
 
             if (birthdayVideo) {
 
-                birthdayVideo.currentTime = 0;
+             birthdayVideo.currentTime = 0;
 
-                birthdayVideo
-                    .play()
-                    .catch(() => {
+             // Remember whether music was playing
+             resumeMusicAfterVideo = musicPlaying;
 
-                        birthdayVideo.controls = true;
-
-                    });
-
+             // Pause background music during the birthday video
+             if (musicPlaying) {
+             pauseBirthdayMusic();
             }
+
+             birthdayVideo
+             .play()
+             .catch(() => {
+
+                 birthdayVideo.controls = true;
+
+             });
+
+    }
 
         }, 700);
 
@@ -406,6 +421,15 @@ if (openGiftButton) {
 if (birthdayVideo) {
 
     birthdayVideo.addEventListener("ended", () => {
+
+        // Resume background music only if it was
+        // playing before the video started
+        if (resumeMusicAfterVideo) {
+            playBirthdayMusic();
+        }
+
+        resumeMusicAfterVideo = false;
+
 
         if (finalMessage) {
             finalMessage.classList.add("show");
@@ -538,4 +562,86 @@ const params = new URLSearchParams(window.location.search);
 
 if (params.get("test") === "1") {
     unlockBirthday();
+}
+
+// =====================================================
+// GLOBAL BACKGROUND MUSIC
+// =====================================================
+
+const backgroundMusic =
+    document.getElementById("background-music");
+
+const musicToggle =
+    document.getElementById("music-toggle");
+
+const musicIcon =
+    document.getElementById("music-icon");
+
+let musicPlaying = false;
+
+
+if (backgroundMusic) {
+    backgroundMusic.volume = 0.35;
+}
+
+
+function playBirthdayMusic() {
+
+    if (!backgroundMusic) return;
+
+    backgroundMusic
+        .play()
+        .then(() => {
+
+            musicPlaying = true;
+
+            if (musicToggle) {
+                musicToggle.classList.add("playing");
+            }
+
+            if (musicIcon) {
+                musicIcon.textContent = "♫";
+            }
+
+        })
+        .catch(() => {
+
+            musicPlaying = false;
+
+        });
+
+}
+
+
+function pauseBirthdayMusic() {
+
+    if (!backgroundMusic) return;
+
+    backgroundMusic.pause();
+
+    musicPlaying = false;
+
+    if (musicToggle) {
+        musicToggle.classList.remove("playing");
+    }
+
+    if (musicIcon) {
+        musicIcon.textContent = "♪";
+    }
+
+}
+
+
+if (musicToggle) {
+
+    musicToggle.addEventListener("click", () => {
+
+        if (musicPlaying) {
+            pauseBirthdayMusic();
+        } else {
+            playBirthdayMusic();
+        }
+
+    });
+
 }

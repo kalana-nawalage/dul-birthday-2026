@@ -18,6 +18,30 @@
 
     <main id="birthday-app">
 
+        <main id="birthday-app">
+
+    <!-- =====================================================
+         GLOBAL MUSIC CONTROL
+    ===================================================== -->
+
+    <button
+        id="music-toggle"
+        class="music-toggle"
+        aria-label="Toggle background music"
+    >
+        <span id="music-icon">♪</span>
+    </button>
+
+    <audio
+        id="background-music"
+        loop
+        preload="auto"
+    >
+        <source
+            src="assets/music/background-music.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
 
 <!-- =====================================================
      PAGE 0 
@@ -182,14 +206,6 @@
         <span>♥</span>
         <span>✦</span>
     </div>
-
-    <button
-        id="music-toggle"
-        class="music-button"
-        aria-label="Toggle background music"
-    >
-        ♪
-    </button>
 
     <div class="birthday-content">
 

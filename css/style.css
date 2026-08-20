@@ -2574,6 +2574,70 @@ transform-origin: center bottom;
 
 }
 
+/* =====================================================
+   GLOBAL MUSIC CONTROL
+===================================================== */
+
+.music-toggle {
+    position: fixed;
+
+    top: 20px;
+    right: 20px;
+
+    z-index: 999;
+
+    width: 44px;
+    height: 44px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 176, 203, 0.3);
+    border-radius: 50%;
+
+    background: rgba(29, 30, 49, 0.78);
+
+    color: var(--pink);
+
+    font-size: 1.1rem;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.music-toggle.visible {
+    display: flex;
+}
+
+.music-toggle:hover {
+    transform: scale(1.06);
+
+    background: rgba(255, 176, 203, 0.12);
+}
+
+.music-toggle.playing #music-icon {
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
 
 @media (max-width: 600px) {
 
@@ -3223,6 +3287,18 @@ transform-origin: center bottom;
     margin-top: 12px;
 
     font-size: 0.6rem;
+}
+
+/* GLOBAL MUSIC CONTROL / MOBILE */
+
+.music-toggle {
+    top: 14px;
+    right: 14px;
+
+    width: 38px;
+    height: 38px;
+
+    font-size: 0.95rem;
 }
 
 }
