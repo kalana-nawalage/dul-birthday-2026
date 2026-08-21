@@ -208,3 +208,82 @@ function completeMisuuGame() {
     }
 
 }
+
+// =====================================================
+// RESET MISUU GAME
+// =====================================================
+
+function resetMisuuGame() {
+
+    clearInterval(heartSpawnTimer);
+
+    heartSpawnTimer = null;
+
+    gameScore = 0;
+    gameStarted = false;
+
+
+    if (gameScoreNumber) {
+        gameScoreNumber.textContent = "0";
+    }
+
+
+    document
+        .querySelectorAll(".game-heart")
+        .forEach((heart) => {
+            heart.remove();
+        });
+
+
+    if (gameMessage) {
+
+        gameMessage.textContent =
+            "Tap the hearts before they disappear!";
+
+    }
+
+
+    if (gameNextButton) {
+
+        gameNextButton.disabled = true;
+
+        gameNextButton.classList.add("locked");
+
+        gameNextButton.innerHTML = `
+            <svg
+                class="game-lock"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+            >
+                <rect
+                    x="5"
+                    y="10"
+                    width="14"
+                    height="11"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M8 10V7a4 4 0 0 1 8 0v3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+
+                <path
+                    d="M12 14v3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                />
+            </svg>
+
+            <span>Catch all 10 hearts</span>
+        `;
+
+    }
+
+}

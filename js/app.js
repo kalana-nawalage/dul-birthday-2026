@@ -1,15 +1,29 @@
 function showScene(sceneId) {
-    const scenes = document.querySelectorAll(".scene");
+
+    const scenes =
+        document.querySelectorAll(".scene");
 
     scenes.forEach((scene) => {
-        scene.classList.remove("active");
+
+        scene.classList.remove(
+            "active",
+            "scene-enter",
+            "scene-exit"
+        );
+
     });
 
-    const nextScene = document.getElementById(sceneId);
+
+    const nextScene =
+        document.getElementById(sceneId);
+
 
     if (nextScene) {
+
         nextScene.classList.add("active");
+
     }
+
 }
 
 function unlockBirthday() {
@@ -539,14 +553,20 @@ if (replayBirthdayButton) {
 
     replayBirthdayButton.addEventListener("click", () => {
 
+        resetBirthdayExperience();
+
         showScene("welcome");
+
 
         const welcomeScene =
             document.getElementById("welcome");
 
+
         if (welcomeScene) {
 
-            welcomeScene.classList.add("scene-enter");
+            welcomeScene.classList.add(
+                "scene-enter"
+            );
 
         }
 
@@ -643,5 +663,97 @@ if (musicToggle) {
         }
 
     });
+
+}
+
+// =====================================================
+// RESET EXPERIENCE FOR REPLAY
+// =====================================================
+
+function resetBirthdayExperience() {
+
+    /* PAGE 4 — REASONS */
+
+    openedReasons = 0;
+
+    if (reasonsOpened) {
+        reasonsOpened.textContent = "0";
+    }
+
+    reasonCards.forEach((card) => {
+
+        card.classList.remove("revealed");
+
+        const text =
+            card.querySelector(".reason-text");
+
+        if (text) {
+            text.textContent = "";
+        }
+
+    });
+
+
+    /* PAGE 5 — LETTER */
+
+    if (openLetterButton) {
+        openLetterButton.classList.remove("open");
+    }
+
+    if (letterHint) {
+        letterHint.classList.remove("hidden");
+    }
+
+    if (letterNextButton) {
+
+        letterNextButton.disabled = true;
+
+        letterNextButton.classList.remove("unlocked");
+
+    }
+
+
+    /* PAGE 6 — GAME */
+
+    if (typeof resetMisuuGame === "function") {
+        resetMisuuGame();
+    }
+
+
+    /* PAGE 7 — VIDEO */
+
+    if (birthdayVideo) {
+
+        birthdayVideo.pause();
+
+        birthdayVideo.currentTime = 0;
+
+        birthdayVideo.controls = false;
+
+    }
+
+    if (giftStage) {
+        giftStage.style.display = "";
+    }
+
+    if (openGiftButton) {
+        openGiftButton.classList.remove("opening");
+    }
+
+    if (videoStage) {
+        videoStage.classList.remove("show");
+    }
+
+    if (finalMessage) {
+        finalMessage.classList.remove("show");
+    }
+
+    if (surpriseNextButton) {
+
+        surpriseNextButton.disabled = true;
+
+        surpriseNextButton.classList.remove("unlocked");
+
+    }
 
 }
