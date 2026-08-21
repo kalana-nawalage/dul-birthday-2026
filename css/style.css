@@ -1591,7 +1591,7 @@ transform-origin: center bottom;
     box-shadow:
         0 12px 30px rgba(0, 0, 0, 0.18);
 
-    overflow-y: auto;
+   overflow: hidden;
 
     transform: translateY(40px);
 
@@ -1646,7 +1646,8 @@ transform-origin: center bottom;
 
 .envelope.open .letter-paper {
     transform: translateY(-130px);
-
+    overflow-y: auto;
+    overflow-x: hidden;
      z-index: 6;
 
     height: 330px;
@@ -2644,6 +2645,37 @@ transform-origin: center bottom;
     pointer-events: none;
 }
 
+/* =====================================================
+   PAGE 5 — LETTER SCROLLBAR POLISH
+===================================================== */
+
+.envelope.open .letter-paper {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 127, 177, 0.55) transparent;
+}
+
+.envelope.open .letter-paper::-webkit-scrollbar {
+    width: 6px;
+}
+
+.envelope.open .letter-paper::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.envelope.open .letter-paper::-webkit-scrollbar-thumb {
+    background: rgba(255, 127, 177, 0.45);
+    border-radius: 999px;
+}
+
+.envelope.open .letter-paper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 127, 177, 0.7);
+}
+
+
+
+/* =====================================================
+                   MOBILE MEDIA
+===================================================== */
 @media (max-width: 600px) {
 
     .countdown-scene {
