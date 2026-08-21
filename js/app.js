@@ -141,21 +141,41 @@ polaroids.forEach((photo) => {
 
         photoViewer.classList.add("open");
 
+
+        // Hide music button while photo is open
+        if (musicToggle) {
+            musicToggle.classList.add("hidden-during-photo");
+        }
+
     });
 
 });
 
 
+// =====================================================
+// CLOSE PHOTO VIEWER
+// =====================================================
+
 function closePhotoViewer() {
+
     photoViewer.classList.remove("open");
+
+
+    // Show music button again
+    if (musicToggle) {
+        musicToggle.classList.remove("hidden-during-photo");
+    }
+
 }
 
 
 if (closePhotoButton) {
+
     closePhotoButton.addEventListener(
         "click",
         closePhotoViewer
     );
+
 }
 
 
@@ -164,7 +184,9 @@ if (photoViewer) {
     photoViewer.addEventListener("click", (event) => {
 
         if (event.target === photoViewer) {
+
             closePhotoViewer();
+
         }
 
     });

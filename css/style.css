@@ -2638,6 +2638,11 @@ transform-origin: center bottom;
     }
 }
 
+.music-toggle.hidden-during-photo {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
 @media (max-width: 600px) {
 
